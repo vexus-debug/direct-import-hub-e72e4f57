@@ -147,6 +147,7 @@ import AdminHealthMonitoring from "./pages/admin/AdminHealthMonitoring";
 import AdminWhiteLabel from "./pages/admin/AdminWhiteLabel";
 import AdminLiveSessions from "./pages/admin/AdminLiveSessions";
 import { SessionTracker } from "@/hooks/useSessionTracker";
+import { PwaRouteGate } from "@/components/PwaRouteGate";
 import { Seo } from "@/components/Seo";
 
 const queryClient = new QueryClient();
@@ -180,6 +181,7 @@ const App = () => (
       <BrowserRouter>
         <AuthProvider>
           <Seo />
+          <PwaRouteGate />
           <InstallPrompt />
           <SessionTracker />
           <SiteScrollToTop />
