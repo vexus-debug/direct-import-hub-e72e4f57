@@ -142,7 +142,6 @@ const extraItems: NavItem[] = [
   { title: "Notifications", path: "notifications", icon: Bell },
   { title: "Tutorials", path: "tutorials", icon: GraduationCap },
   { title: "Settings", path: "settings", icon: Settings },
-  { title: "Subscription", path: "subscription", icon: BadgeCheck },
 ];
 
 const diagnosticNav: NavGroup[] = [
