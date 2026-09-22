@@ -4,7 +4,7 @@ import {
   ClipboardList, DollarSign, Wrench, MessageSquare, Star, Receipt, Shield,
   FileCheck, FolderOpen, Eye, Heart, Baby, Bone, Ear, Wallet, FileText,
   PiggyBank, TrendingUp, Calculator, Clock, CalendarClock, Truck,
-  ShoppingCart, Link2, LineChart, Globe, Megaphone, Mail, CalendarRange, Ticket, BadgeCheck,
+  ShoppingCart, Link2, LineChart, Globe, Megaphone, Mail, CalendarRange, Ticket,
   ScanLine, Pill, FileSearch, Glasses, Contact, Activity, Scissors,
 } from "lucide-react";
 
