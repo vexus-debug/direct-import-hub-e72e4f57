@@ -71,18 +71,18 @@ const dentalNav: NavGroup[] = [
       { title: "Consent Forms", path: "consent-forms", icon: FileCheck },
     ],
   },
-  // Lab group hidden — uncomment to restore
-  // {
-  //   label: "Lab",
-  //   items: [
-  //     { title: "Lab Work", path: "lab-work", icon: FlaskConical },
-  //     { title: "Lab Dashboard", path: "lab", icon: Microscope },
-  //     { title: "Lab Cases", path: "lab/cases", icon: ClipboardList },
-  //     { title: "Technicians", path: "lab/technicians", icon: Users },
-  //     { title: "Lab Billing", path: "lab/billing", icon: DollarSign },
-  //     { title: "Lab Settings", path: "lab/settings", icon: Wrench },
-  //   ],
-  // },
+  {
+    label: "In-House Lab",
+    items: [
+      { title: "Lab Dashboard", path: "lab", icon: Microscope },
+      { title: "Lab Cases", path: "lab/cases", icon: ClipboardList },
+      { title: "Lab Work Orders", path: "lab-work", icon: FlaskConical },
+      { title: "Technicians", path: "lab/technicians", icon: Users },
+      { title: "Lab Billing", path: "lab/billing", icon: DollarSign },
+      { title: "Lab Settings", path: "lab/settings", icon: Wrench },
+    ],
+  },
+
   {
     label: "Finance",
     items: [
