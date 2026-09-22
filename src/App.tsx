@@ -180,6 +180,7 @@ const App = () => (
       <BrowserRouter>
         <AuthProvider>
           <Seo />
+          <PwaRouteGate />
           <InstallPrompt />
           <SessionTracker />
           <SiteScrollToTop />
