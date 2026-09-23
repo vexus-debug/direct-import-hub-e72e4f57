@@ -1411,72 +1411,109 @@ export type Database = {
       }
       lab_cases: {
         Row: {
-          case_number: string
+          assigned_technician_id: string | null
+          case_number: string | null
+          clinic_code: string | null
+          clinic_doctor_name: string | null
           clinic_fee: number | null
           completed_date: string | null
           created_at: string
           dentist_id: string | null
+          discount: number
           due_date: string | null
           id: string
           instructions: string | null
+          is_paid: boolean
+          is_urgent: boolean
+          job_description: string | null
+          job_instructions: string[] | null
           lab_fee: number | null
           material: string | null
           notes: string | null
           org_id: string
           patient_id: string | null
+          remark: string | null
           shade: string | null
           start_date: string | null
           status: string
           technician_id: string | null
+          treatment_id: string | null
           updated_at: string
           urgency: string | null
           work_type: string
         }
         Insert: {
-          case_number: string
+          assigned_technician_id?: string | null
+          case_number?: string | null
+          clinic_code?: string | null
+          clinic_doctor_name?: string | null
           clinic_fee?: number | null
           completed_date?: string | null
           created_at?: string
           dentist_id?: string | null
+          discount?: number
           due_date?: string | null
           id?: string
           instructions?: string | null
+          is_paid?: boolean
+          is_urgent?: boolean
+          job_description?: string | null
+          job_instructions?: string[] | null
           lab_fee?: number | null
           material?: string | null
           notes?: string | null
           org_id: string
           patient_id?: string | null
+          remark?: string | null
           shade?: string | null
           start_date?: string | null
           status?: string
           technician_id?: string | null
+          treatment_id?: string | null
           updated_at?: string
           urgency?: string | null
           work_type: string
         }
         Update: {
-          case_number?: string
+          assigned_technician_id?: string | null
+          case_number?: string | null
+          clinic_code?: string | null
+          clinic_doctor_name?: string | null
           clinic_fee?: number | null
           completed_date?: string | null
           created_at?: string
           dentist_id?: string | null
+          discount?: number
           due_date?: string | null
           id?: string
           instructions?: string | null
+          is_paid?: boolean
+          is_urgent?: boolean
+          job_description?: string | null
+          job_instructions?: string[] | null
           lab_fee?: number | null
           material?: string | null
           notes?: string | null
           org_id?: string
           patient_id?: string | null
+          remark?: string | null
           shade?: string | null
           start_date?: string | null
           status?: string
           technician_id?: string | null
+          treatment_id?: string | null
           updated_at?: string
           urgency?: string | null
           work_type?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "lab_cases_assigned_technician_id_fkey"
+            columns: ["assigned_technician_id"]
+            isOneToOne: false
+            referencedRelation: "staff"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "lab_cases_dentist_id_fkey"
             columns: ["dentist_id"]
@@ -1505,11 +1542,20 @@ export type Database = {
             referencedRelation: "staff"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "lab_cases_treatment_id_fkey"
+            columns: ["treatment_id"]
+            isOneToOne: false
+            referencedRelation: "treatments"
+            referencedColumns: ["id"]
+          },
         ]
       }
       lab_invoices: {
         Row: {
+          amount_paid: number
           clinic_code: string | null
+          clinic_doctor_name: string | null
           created_at: string
           discount: number
           id: string
@@ -1525,7 +1571,9 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          amount_paid?: number
           clinic_code?: string | null
+          clinic_doctor_name?: string | null
           created_at?: string
           discount?: number
           id?: string
@@ -1541,7 +1589,9 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          amount_paid?: number
           clinic_code?: string | null
+          clinic_doctor_name?: string | null
           created_at?: string
           discount?: number
           id?: string
@@ -5314,6 +5364,10 @@ export type Database = {
       next_lab_serial: {
         Args: { _kind: string; _org_id: string; _prefix: string }
         Returns: string
+      }
+      seed_lab_allocation_rules: {
+        Args: { _org_id: string }
+        Returns: undefined
       }
     }
     Enums: {
