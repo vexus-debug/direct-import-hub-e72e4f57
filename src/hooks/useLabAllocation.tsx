@@ -47,12 +47,12 @@ export function useLabRevenueSummary() {
     queryFn: async () => {
       const { data: allInvoices } = await (supabase as any)
         .from("lab_invoices")
-        .select("total, status")
+        .select("total, amount_paid, status")
         .eq("org_id", orgId);
       const invoices = (allInvoices || []) as any[];
       const totalRevenue = invoices.reduce((s: number, i: any) => s + Number(i.total), 0);
-      const totalPaid = 0; // computed from payments if needed
-      const outstanding = totalRevenue - totalPaid;
+      const totalPaid = invoices.reduce((s: number, i: any) => s + Number(i.amount_paid || 0), 0);
+      const outstanding = Math.max(totalRevenue - totalPaid, 0);
 
       const startOfMonth = new Date();
       startOfMonth.setDate(1);

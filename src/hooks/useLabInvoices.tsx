@@ -38,8 +38,8 @@ export function useLabInvoices() {
       return (data || []).map((inv: any) => ({
         ...inv,
         total_amount: inv.total || 0,
-        amount_paid: 0,
-        clinic_doctor_name: inv.clinic_code || "",
+        amount_paid: Number(inv.amount_paid || 0),
+        clinic_doctor_name: inv.clinic_doctor_name || inv.clinic_code || "",
       })) as unknown as LabInvoiceRow[];
     },
   });
@@ -61,13 +61,15 @@ export function useCreateLabInvoice() {
     mutationFn: async (invoice: any) => {
       const disc = invoice.discount || 0;
       const total = Math.max(invoice.subtotal - disc, 0);
-      const status = "unpaid";
+      const paid = Number(invoice.amount_paid || 0);
+      const status = paid <= 0 ? "unpaid" : paid >= total ? "paid" : "partial";
       const { data, error } = await (supabase as any)
         .from("lab_invoices")
         .insert({
           invoice_number: `LAB-${Date.now()}`, clinic_code: invoice.clinic_code || "",
+          clinic_doctor_name: invoice.clinic_doctor_name || "",
           patient_name: invoice.patient_name || "", lab_case_id: invoice.lab_case_id || null,
-          subtotal: invoice.subtotal, discount: disc, total, status, notes: invoice.notes || "",
+          subtotal: invoice.subtotal, discount: disc, total, amount_paid: paid, status, notes: invoice.notes || "",
           org_id: currentOrg?.org_id,
         })
         .select().single();
